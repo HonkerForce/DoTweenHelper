@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Sockets;
 using UnityEngine;
 using DG;
 using DG.Tweening;
@@ -35,14 +38,26 @@ public class TestMain : MonoBehaviour
         // tweenTarget?.DOLocalRotate(new Vector3(90f, 0f, 0f), 1f, RotateMode.Fast).From(true);
     }
 
-    // private TweenerCore<Vector3, Vector3, VectorOptions> tweener;
+    private TweenerCore<Vector3, Vector3, VectorOptions> tweener;
     public void OnClick_Test()
     {
-        if (DOTween.IsTweening(tweenTarget, true))
-        {
-            DOTween.Rewind(tweenTarget);
-            return;
-        }
-        tweenTarget?.DOMove(to, runTime, snap).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutBounce);
+        // if (DOTween.IsTweening(tweenTarget, true))
+        // {
+        //     DOTween.Rewind(tweenTarget);
+        //     return;
+        // }
+        //
+        // if (tweenTarget.position == to)
+        // {
+        //     tweener.Restart(true);
+        // }
+        // else
+        // {
+        //     tweener = tweenTarget?.DOMove(to, runTime, snap).SetLoops(1, LoopType.Yoyo).SetEase(Ease.Linear).SetId("nihao").SetAutoKill(false);
+        // }
+        
+        // print("找到id=nihao的Tween：" + DOTween.TweensById("nihao")?.Count + "个," + String.Join(',', DOTween.TweensById("nihao")?.Select(x => x.stringId)));
+        
+        
     }
 }
