@@ -55,7 +55,7 @@ namespace DoTweenHelper
 		public GameObject linkGameobject { get => _LinkGameobject; set => _LinkGameobject = value; }
 		public Ease easeType { get => _easeType; set => _easeType = value; }
 
-		void Awake()
+		protected virtual void Awake()
 		{
 			target ??= GetComponent<T_Target>();
 		}

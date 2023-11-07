@@ -18,13 +18,15 @@ namespace DoTweenHelper
 
 		public Gradient gradient;
 
-		public MaterialColorTween()
-		{
-			material = target.material;
-		}
-
 		public override Tween CreateTween()
 		{
+			material ??= target?.sharedMaterial;
+			if (material == null)
+			{
+				Debug.LogError("获取Render中的Material引用失败！");
+				return null;
+			}
+			
 			if (isUseGradient)
 			{
 				if (String.IsNullOrEmpty(propertyName))

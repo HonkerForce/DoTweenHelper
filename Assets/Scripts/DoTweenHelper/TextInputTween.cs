@@ -23,7 +23,7 @@ namespace DoTweenHelper
 		
 		public override Tween CreateTween()
 		{
-			return target.DOText(endValue, duration, isRichText, scrambleMode, scrambleText.text);
+			return target.DOText(endValue, duration, isRichText, scrambleMode, scrambleMode == ScrambleMode.None ? null : scrambleText.text);
 		}
 	}
 }

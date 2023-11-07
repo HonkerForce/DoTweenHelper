@@ -6,17 +6,20 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Camera))]
+	[ExecuteInEditMode]
 	public abstract class CameraShakeTween : TweenAnimation<Camera, Vector3>
 	{
-		public Vector3 shakeRange;
+		protected Vector3 shakeRange;
 		public int shakeNum;
 		public float shakeRandom;
 		public ShakeRandomType randMode;
 		public bool isFadeOut;
 
-		public CameraShakeTween()
+#if UNITY_EDITOR
+		void Update()
 		{
 			shakeRange = endValue;
 		}
+#endif
 	}
 }
