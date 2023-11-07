@@ -1,12 +1,17 @@
 ﻿using DG.DOTweenEditor;
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace DoTweenHelper.Editor
 {
 	[CustomEditor(typeof(TweenControl), true)]
-	public class TweenControlEditor : UnityEditor.Editor
+	public class TweenControlEditor 
+#if UNITY_EDITOR
+		: UnityEditor.Editor
+#endif
 	{
 		private TweenControl com;
 		private Sequence tweens;
