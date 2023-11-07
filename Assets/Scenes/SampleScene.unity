@@ -1145,6 +1145,7 @@ GameObject:
   - component: {fileID: 1660903123}
   - component: {fileID: 1660903125}
   - component: {fileID: 1660903124}
+  - component: {fileID: 1660903126}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -1161,7 +1162,7 @@ RectTransform:
   m_GameObject: {fileID: 1660903117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.07, y: 1.07, z: 1.07}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 101402755}
@@ -1296,15 +1297,40 @@ MonoBehaviour:
   _ID: 
   _duration: 1
   _delay: 0
-  _isLoop: 0
-  _loopTimes: 0
-  _loopType: 0
+  _isLoop: 1
+  _loopTimes: -1
+  _loopType: 1
   _isAutoKill: 0
   _isLinkGameobject: 0
   _linkActionType: 0
   _LinkGameobject: {fileID: 0}
   _easeType: 1
   isOnlyAlpha: 0
+--- !u!114 &1660903126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660903117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018db33b4a834b9b9260230627d12b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endValue: {x: 1.5, y: 1.5, z: 1.5}
+  _ID: 
+  _duration: 1
+  _delay: 1
+  _isLoop: 1
+  _loopTimes: -1
+  _loopType: 1
+  _isAutoKill: 0
+  _isLinkGameobject: 0
+  _linkActionType: 0
+  _LinkGameobject: {fileID: 0}
+  _easeType: 1
+  snapping: 0
 --- !u!1 &1825973814
 GameObject:
   m_ObjectHideFlags: 0
