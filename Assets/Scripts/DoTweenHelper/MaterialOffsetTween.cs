@@ -10,13 +10,32 @@ namespace DoTweenHelper
 	{
 		protected Material material;
 
+		public int index;
+
 		public string propertyName = "";
 
 		public bool snapping;
 
 		public override Tween CreateTween()
 		{
-			material ??= target?.sharedMaterial;
+			if (target == null)
+			{
+				return null;
+			}
+			if (Application.isPlaying)
+			{
+				if (index < target.materials.Length)
+				{
+					material = target.materials[index];
+				}
+			}
+			else
+			{
+				if (index < target.sharedMaterials.Length)
+				{
+					material = target.sharedMaterials[index];
+				}
+			}
 			if (material == null)
 			{
 				Debug.LogError("获取Render中的Material引用失败！");
