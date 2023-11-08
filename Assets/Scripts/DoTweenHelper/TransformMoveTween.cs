@@ -18,9 +18,17 @@ namespace DoTweenHelper
 		/// </summary>
 		public bool isRelative = false;
 
+		public bool isFrom = false;
+
 		public override Tween CreateTween()
 		{
-			return target?.DOMove(endValue, duration, snapping).SetRelative(isRelative);
+			var ret = target?.DOMove(endValue, duration, snapping).SetRelative(isRelative);
+			if (isFrom)
+			{
+				ret = ret.From();
+			}
+
+			return ret;
 		}
 	}
 }

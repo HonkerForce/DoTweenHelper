@@ -16,6 +16,10 @@ namespace DoTweenHelper.Editor
 		private TweenControl com;
 		private Sequence tweens;
 
+		private Vector3 fromPosition;
+		private Vector3 fromRotation;
+		private Vector3 fromScale;
+
 		private bool isPause = false;
 
 		void Awake()
@@ -51,6 +55,10 @@ namespace DoTweenHelper.Editor
 		{
 			if (!isPause)
 			{
+				fromPosition = com.transform.localPosition;
+				fromRotation = com.transform.localRotation.eulerAngles;
+				fromScale = com.transform.localScale;
+				
 				tweens ??= DOTween.Sequence();
 				var coms = com.GetComponents<ITween>();
 				foreach (var tween in coms)
@@ -79,6 +87,14 @@ namespace DoTweenHelper.Editor
 			DOTweenEditorPreview.Stop(true);
 			isPause = false;
 			tweens = null;
+
+			var trans = com.transform;
+			if (trans.localPosition != fromPosition || trans.localRotation.eulerAngles != fromRotation || trans.localScale != fromScale)
+			{
+				trans.localPosition = fromPosition;
+				trans.localRotation = Quaternion.Euler(fromRotation);
+				trans.localScale = fromScale;
+			}
 		}
 	}
 }

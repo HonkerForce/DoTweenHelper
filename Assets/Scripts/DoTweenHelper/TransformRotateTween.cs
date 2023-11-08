@@ -11,10 +11,17 @@ namespace DoTweenHelper
 		public bool isRelative = false;
 		public RotateMode rotateMode;
 		public bool isUseShortest360Route = false;
+		public bool isFrom;
 		
 		public override Tween CreateTween()
 		{
-			return target?.DORotate(endValue, duration, rotateMode).SetRelative(isRelative).SetOptions(isUseShortest360Route);
+			var ret = target?.DORotate(endValue, duration, rotateMode).SetRelative(isRelative).SetOptions(isUseShortest360Route);
+			if (isFrom)
+			{
+				ret.From();
+			}
+
+			return ret;
 		}
 	}
 }

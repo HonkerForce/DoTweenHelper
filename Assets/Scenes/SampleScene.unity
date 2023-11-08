@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 527592029}
   - component: {fileID: 527592028}
   - component: {fileID: 527592027}
+  - component: {fileID: 527592032}
   - component: {fileID: 527592031}
   m_Layer: 0
   m_Name: Cube(TestMainTween)
@@ -532,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527592026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.44, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -548,14 +549,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 527592026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8544c9dd45093b3408c21ca8e860fbf8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5afc9293bebf4e6383f63e469a2d8093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 527592030}
-  to: {x: 0, y: 0, z: 0}
-  runTime: 1
-  snap: 0
-  delay: 0.5
+  endValue: {x: 0, y: 0, z: 0}
+  _ID: 
+  _duration: 1
+  _delay: 0.5
+  _isLoop: 0
+  _loopTimes: 0
+  _loopType: 0
+  _isAutoKill: 0
+  _isLinkGameobject: 0
+  _linkActionType: 0
+  _LinkGameobject: {fileID: 0}
+  _easeType: 1
+  snapping: 0
+  isRelative: 0
+  isFrom: 1
+--- !u!114 &527592032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527592026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388047633a7e46c4b87212a1839bcde8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ID: 
+  _isAutoPlay: 0
 --- !u!1 &608857505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,6 +1440,7 @@ MonoBehaviour:
   _LinkGameobject: {fileID: 0}
   _easeType: 1
   snapping: 0
+  isFrom: 0
 --- !u!1 &1825973814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,7 +1525,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 527592031}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestMain, Assembly-CSharp
         m_MethodName: OnClick_Test
         m_Mode: 1
