@@ -7,10 +7,8 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Text))]
-	public class TextFadeTween : TweenAnimation<Text, float>
+	public class TextFadeTween : ColorFadeTween<Text>
 	{
-		public bool isOnlyAlpha;
-
 		public override Tween CreateTween()
 		{
 			return target.DOFade(endValue, duration).SetOptions(isOnlyAlpha);

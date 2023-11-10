@@ -19,14 +19,9 @@ namespace DoTweenHelper
 	}
 	
 	[Serializable]
-	[RequireComponent(typeof(Transform))]
-	public abstract class TransformShakeTween : TweenAnimation<Transform, Vector3>
+	public abstract class ShakeTween<T_Target> : TweenAnimation<T_Target, Vector3>
+		where T_Target : Component
 	{
-		/// <summary>
-		/// 震动幅度
-		/// </summary>
-		protected Vector3 shakeRange;
-		
 		/// <summary>
 		/// 震动次数
 		/// </summary>
@@ -37,7 +32,7 @@ namespace DoTweenHelper
 		/// 改变震动方向的随机值
 		/// </summary>
 		public float shakeRandom;
-
+		
 		/// <summary>
 		/// 震动随机模式
 		/// </summary>
@@ -47,11 +42,5 @@ namespace DoTweenHelper
 		/// 是否淡出(在运动最后回到原位置)
 		/// </summary>
 		public bool isFadeOut;
-
-		public TransformShakeTween()
-		{
-			shakeRange = endValue;
-		}
-		
 	}
 }

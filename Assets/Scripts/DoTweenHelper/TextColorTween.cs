@@ -7,10 +7,8 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Text))]
-	public class TextColorTween : TweenAnimation<Text, Color>
+	public class TextColorTween : ColorTween<Text>
 	{
-		public bool isOnlyAlpha;
-
 		public override Tween CreateTween()
 		{
 			return target.DOColor(endValue, duration).SetOptions(isOnlyAlpha);

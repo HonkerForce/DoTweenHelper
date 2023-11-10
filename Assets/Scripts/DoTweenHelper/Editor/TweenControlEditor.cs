@@ -60,7 +60,15 @@ namespace DoTweenHelper.Editor
 				fromScale = com.transform.localScale;
 				
 				tweens ??= DOTween.Sequence();
-				var coms = com.GetComponents<ITween>();
+				ITween[] coms = null;
+				if (com.isPlayChildren)
+				{
+					coms = com.GetComponentsInChildren<ITween>();
+				}
+				else
+				{
+					coms = com.GetComponents<ITween>();
+				}
 				foreach (var tween in coms)
 				{
 					tweens?.Insert(tween.delay, tween.DoTween());
@@ -70,7 +78,7 @@ namespace DoTweenHelper.Editor
 				DOTweenEditorPreview.PrepareTweenForPreview(tweens, andPlay: false);
 			}
 
-			tweens?.Play();
+			tweens?.OnComplete(() => StopInEditor()).Play();
 		}
 
 		void PauseInEditor()
@@ -86,6 +94,7 @@ namespace DoTweenHelper.Editor
 		{
 			DOTweenEditorPreview.Stop(true);
 			isPause = false;
+			tweens?.Kill();
 			tweens = null;
 
 			var trans = com.transform;

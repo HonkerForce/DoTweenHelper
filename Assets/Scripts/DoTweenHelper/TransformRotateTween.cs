@@ -6,12 +6,9 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Transform))]
-	public class TransformRotateTween : TweenAnimation<Transform, Vector3>
+	public class TransformRotateTween : RotateTween<Transform>
 	{
-		public bool isRelative = false;
-		public RotateMode rotateMode;
-		public bool isUseShortest360Route = false;
-		public bool isFrom;
+		public bool isFrom = false;
 		
 		public override Tween CreateTween()
 		{

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace DoTweenHelper
 {
+	[Serializable]
 	public sealed class TweenControl : MonoBehaviour, ITweenControl
 	{
 		private Sequence Instance = null;
@@ -13,6 +14,8 @@ namespace DoTweenHelper
 
 		[SerializeField] private bool _isAutoPlay;
 
+		[SerializeField] private bool _isPlayChildren;
+
 		public Sequence Get
 		{
 			get => Instance;
@@ -20,6 +23,7 @@ namespace DoTweenHelper
 		
 		public string ID { get => _ID; set => _ID = value; }
 		public bool isAutoPlay { get => _isAutoPlay; set => _isAutoPlay = value; }
+		public bool isPlayChildren { get => _isPlayChildren; set => _isPlayChildren = value; }
 
 		public void Play()
 		{
@@ -59,6 +63,11 @@ namespace DoTweenHelper
 			{
 				Pause();
 			}
+		}
+
+		void OnDestroy()
+		{
+			Instance?.Kill();
 		}
 	}
 }

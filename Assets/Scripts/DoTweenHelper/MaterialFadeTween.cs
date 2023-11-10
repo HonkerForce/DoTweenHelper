@@ -6,7 +6,7 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Renderer))]
-	public class MaterialFadeTween : TweenAnimation<Renderer, float>
+	public class MaterialFadeTween : ColorFadeTween<Renderer>
 	{
 		protected Material material;
 
@@ -17,8 +17,6 @@ namespace DoTweenHelper
 		public int index = 0;
 
 		public string propertyName = "";
-
-		public bool isOnlyAlpha;
 
 		public override Tween CreateTween()
 		{

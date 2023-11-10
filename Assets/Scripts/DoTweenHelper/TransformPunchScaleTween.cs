@@ -1,8 +1,12 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
+using UnityEngine;
 
 namespace DoTweenHelper
 {
-	public class TransformPunchScaleTween : TransformPunchTween
+	[Serializable]
+	[RequireComponent(typeof(Transform))]
+	public class TransformPunchScaleTween : PunchTween<Transform>
 	{
 		public override Tween CreateTween()
 		{

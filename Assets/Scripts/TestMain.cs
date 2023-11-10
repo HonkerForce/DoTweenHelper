@@ -8,6 +8,7 @@ using DG;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using DoTweenHelper.Attribute;
 
 public class TestMain : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class TestMain : MonoBehaviour
     public bool snap;
     public float delay;
 
+    public Sequence seq;
+
+    [EnumField] public LoopType enumType;
+    
     void Awake()
     {
         DOTween.Init();
@@ -39,6 +44,11 @@ public class TestMain : MonoBehaviour
     void Update()
     {
         // tweenTarget?.DOLocalRotate(new Vector3(90f, 0f, 0f), 1f, RotateMode.Fast).From(true);
+    }
+
+    void OnDestroy()
+    {
+        seq?.Kill();
     }
 
     private TweenerCore<Vector3, Vector3, VectorOptions> tweener;

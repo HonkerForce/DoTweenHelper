@@ -1,12 +1,16 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
+using UnityEngine;
 
 namespace DoTweenHelper
 {
-	public class CameraShakeMoveTween : CameraShakeTween
+	[Serializable]
+	[RequireComponent(typeof(Camera))]
+	public class CameraShakeMoveTween : ShakeTween<Camera>
 	{
 		public override Tween CreateTween()
 		{
-			return target.DOShakePosition(duration, shakeRange, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);
+			return target.DOShakePosition(duration, endValue, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);
 		}
 	}
 }

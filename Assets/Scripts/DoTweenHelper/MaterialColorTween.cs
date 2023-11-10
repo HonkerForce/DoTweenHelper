@@ -6,7 +6,7 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Renderer))]
-	public class MaterialColorTween : TweenAnimation<Renderer, Color>
+	public class MaterialColorTween : ColorTween<Renderer>
 	{
 		protected Material material;
 		
@@ -17,8 +17,6 @@ namespace DoTweenHelper
 		public int index = 0;
 
 		public string propertyName = "";
-
-		public bool isOnlyAlpha;
 
 		public bool isUseGradient;
 

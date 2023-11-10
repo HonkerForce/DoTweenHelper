@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace DoTweenHelper
 {
-	public class TransformPunchMoveTween : TransformPunchTween
+	[Serializable]
+	[RequireComponent(typeof(Transform))]
+	public class TransformPunchMoveTween : PunchTween<Transform>
 	{
 		public override Tween CreateTween()
 		{

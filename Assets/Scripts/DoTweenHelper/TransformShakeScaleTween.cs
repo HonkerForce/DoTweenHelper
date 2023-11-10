@@ -1,12 +1,16 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
+using UnityEngine;
 
 namespace DoTweenHelper
 {
-	public class TransformShakeScaleTween : TransformShakeTween
+	[Serializable]
+	[RequireComponent(typeof(Transform))]
+	public class TransformShakeScaleTween : ShakeTween<Transform>
 	{
 		public override Tween CreateTween()
 		{
-			return target.DOShakeScale(duration, shakeRange, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);
+			return target.DOShakeScale(duration, endValue, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);
 		}
 	}
 }

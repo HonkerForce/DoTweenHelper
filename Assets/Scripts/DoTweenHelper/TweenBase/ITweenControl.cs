@@ -11,6 +11,11 @@
 		/// 是否自动播放
 		/// </summary>
 		bool isAutoPlay { get; set; }
+		
+		/// <summary>
+		/// 是否递归播放所有子节点动效
+		/// </summary>
+		bool isPlayChildren { get; set; }
 
 		/// <summary>
 		/// 播放当前节点下的所有动效

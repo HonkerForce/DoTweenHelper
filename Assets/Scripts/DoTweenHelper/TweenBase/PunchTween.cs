@@ -4,8 +4,8 @@ using UnityEngine;
 namespace DoTweenHelper
 {
 	[Serializable]
-	[RequireComponent(typeof(Transform))]
-	public abstract class TransformPunchTween : TweenAnimation<Transform, Vector3>
+	public abstract class PunchTween<T_Target> : TweenAnimation<T_Target, Vector3>
+		where T_Target : Component
 	{
 		/// <summary>
 		/// 冲击次数
