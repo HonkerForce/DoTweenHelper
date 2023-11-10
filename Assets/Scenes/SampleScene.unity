@@ -617,7 +617,7 @@ MonoBehaviour:
   runTime: 0
   snap: 0
   delay: 0
-  enumType: 0
+  enumType: 2
 --- !u!4 &593011595
 Transform:
   m_ObjectHideFlags: 0
@@ -1136,9 +1136,9 @@ MonoBehaviour:
   _linkActionType: 0
   _LinkGameobject: {fileID: 0}
   _easeType: 1
+  isOnlyAlpha: 0
   index: 0
   propertyName: 
-  isOnlyAlpha: 0
   isUseGradient: 0
   gradient:
     serializedVersion: 2
@@ -1193,9 +1193,9 @@ MonoBehaviour:
   _linkActionType: 0
   _LinkGameobject: {fileID: 0}
   _easeType: 1
+  isOnlyAlpha: 0
   index: 0
   propertyName: _EmissionColor
-  isOnlyAlpha: 0
   isUseGradient: 0
   gradient:
     serializedVersion: 2

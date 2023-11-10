@@ -12,7 +12,7 @@ namespace DoTweenHelper
 		/// <summary>
 		/// 锁定的轴(x|y|z)
 		/// </summary>
-		[EnumField] public AxisConstraint lockAxis;
+		public AxisConstraint lockAxis;
 		
 		/// <summary>
 		/// 旋转中心轴方向

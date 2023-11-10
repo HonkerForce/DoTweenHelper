@@ -63,13 +63,13 @@ namespace DoTweenHelper
 		public Vector3? up = null;
 
 		/// <summary>
-		/// 
+		/// 锁定的位移坐标轴
 		/// </summary>
-		[EnumField] public AxisConstraint lockPosition;
+		public AxisConstraint lockPosition;
 
 		/// <summary>
-		/// 
+		/// 锁定的旋转坐标轴
 		/// </summary>
-		[EnumField] public AxisConstraint lockRotation;
+		public AxisConstraint lockRotation;
 	}
 }

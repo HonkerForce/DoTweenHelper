@@ -8,6 +8,7 @@ using DG;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using DoTweenHelper;
 using DoTweenHelper.Attribute;
 
 public class TestMain : MonoBehaviour
@@ -21,7 +22,7 @@ public class TestMain : MonoBehaviour
 
     public Sequence seq;
 
-    [EnumField] public LoopType enumType;
+    public AxisConstraint enumType;
     
     void Awake()
     {
