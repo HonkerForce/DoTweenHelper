@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Renderer))]
 	public class MaterialVectorTween : TweenAnimation<Renderer, Vector4>
 	{
+		public override bool canPreview { get; } = true;
+
 		protected Material material;
 
 		public int index;

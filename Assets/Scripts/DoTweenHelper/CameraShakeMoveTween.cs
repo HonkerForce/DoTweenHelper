@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Camera))]
 	public class CameraShakeMoveTween : ShakeTween<Camera>
 	{
+		public override bool canPreview { get; } = true;
+
 		public override Tween CreateTween()
 		{
 			return target.DOShakePosition(duration, endValue, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);

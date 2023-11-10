@@ -67,6 +67,8 @@ namespace DoTweenHelper
 		GameObject linkGameobject { get; set; }
 		
 		Ease easeType { get; set; }
+		
+		bool canPreview { get; }
 
 		/// <summary>
 		/// 创建Tween

@@ -38,6 +38,12 @@ namespace DoTweenHelper
 
 		[SerializeField] protected Ease _easeType = Ease.Linear;
 		
+		/// <summary>
+		/// 是否支持在编辑模式下预览效果
+		/// 每一个派生Tween都需要重载这个配置
+		/// </summary>
+		public abstract bool canPreview { get; }
+		
 		public Tween Get
 		{
 			get => Instance;

@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class TransformShakeRotateTween : ShakeTween<Transform>
 	{
+		public override bool canPreview { get; } = true;
+
 		public override Tween CreateTween()
 		{
 			return target.DOShakeRotation(duration, endValue, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);

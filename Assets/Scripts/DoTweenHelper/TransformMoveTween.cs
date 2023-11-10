@@ -8,7 +8,9 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class TransformMoveTween : MoveTween<Transform>
 	{
-		public bool isFrom = false;
+		public override bool canPreview { get; } = true;
+
+		protected bool isFrom = false;
 
 		public override Tween CreateTween()
 		{

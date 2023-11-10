@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Camera))]
 	public class CameraNearClipPlaneTween : TweenAnimation<Camera, float>
 	{
+		public override bool canPreview { get; } = true;
+
 		public bool snapping;
 
 		public override Tween CreateTween()

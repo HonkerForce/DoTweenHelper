@@ -9,6 +9,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Text))]
 	public class TextInputTween : TweenAnimation<Text, string>
 	{
+		public override bool canPreview { get; } = true;
+
 		public bool isRichText;
 		
 		/// <summary>

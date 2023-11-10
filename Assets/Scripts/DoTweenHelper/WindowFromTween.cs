@@ -11,6 +11,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class WindowFromTween : TransformScaleTween
 	{
+		public override bool canPreview { get; } = false;
+
 		public override Tween CreateTween()
 		{
 			isFrom = true;

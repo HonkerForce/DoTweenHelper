@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Camera))]
 	public class CameraColorTween : ColorTween<Camera>
 	{
+		public override bool canPreview { get; } = true;
+
 		public override Tween CreateTween()
 		{
 			return target.DOColor(endValue, duration).SetOptions(isOnlyAlpha);

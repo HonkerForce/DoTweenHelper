@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class TransformShakeMoveTween : ShakeTween<Transform>
 	{
+		public override bool canPreview { get; } = true;
+
 		public bool snapping;
 		
 		public override Tween CreateTween()

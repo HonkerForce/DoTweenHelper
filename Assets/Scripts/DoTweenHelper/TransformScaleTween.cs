@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class TransformScaleTween : TweenAnimation<Transform, Vector3>
 	{
+		public override bool canPreview { get; } = true;
+
 		/// <summary>
 		/// 是否平滑生成为整数坐标
 		/// </summary>
@@ -16,7 +18,7 @@ namespace DoTweenHelper
 		/// <summary>
 		/// 是否从传入值渐变到当前值
 		/// </summary>
-		public bool isFrom;
+		protected bool isFrom;
 		
 		public override Tween CreateTween()
 		{

@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class TransformPunchScaleTween : PunchTween<Transform>
 	{
+		public override bool canPreview { get; } = true;
+
 		public override Tween CreateTween()
 		{
 			return target.DOPunchScale(endValue, duration, punchNum, inertia);

@@ -71,6 +71,10 @@ namespace DoTweenHelper.Editor
 				}
 				foreach (var tween in coms)
 				{
+					if (!tween.canPreview)
+					{
+						continue;
+					}
 					tweens?.Insert(tween.delay, tween.DoTween());
 				}
 

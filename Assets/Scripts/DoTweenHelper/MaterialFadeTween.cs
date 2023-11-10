@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Renderer))]
 	public class MaterialFadeTween : ColorFadeTween<Renderer>
 	{
+		public override bool canPreview { get; } = true;
+
 		protected Material material;
 
 		/// <summary>

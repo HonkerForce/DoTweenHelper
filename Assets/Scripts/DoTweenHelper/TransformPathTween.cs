@@ -8,6 +8,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Transform))]
 	public class TransformPathTween : PathTween<Transform>
 	{
+		public override bool canPreview { get; } = true;
+
 		public override Tween CreateTween()
 		{
 			var ret = target.DOPath(endValue, duration, pathType, pathMode, resolution).SetOptions(isClosePath, lockPosition, lockRotation);

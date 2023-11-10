@@ -9,6 +9,8 @@ namespace DoTweenHelper
 	[RequireComponent(typeof(Text))]
 	public class TextColorTween : ColorTween<Text>
 	{
+		public override bool canPreview { get; } = true;
+
 		public override Tween CreateTween()
 		{
 			return target.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
