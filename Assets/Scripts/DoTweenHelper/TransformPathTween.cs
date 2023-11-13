@@ -1,11 +1,13 @@
 ﻿using System;
 using DG.Tweening;
+using DoTweenHelper.Attribute;
 using UnityEngine;
 
 namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Transform))]
+	[SetPathInScene]
 	public class TransformPathTween : PathTween<Transform>
 	{
 		public override bool canPreview { get; } = true;

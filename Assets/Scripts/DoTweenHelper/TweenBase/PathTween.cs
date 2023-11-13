@@ -2,11 +2,14 @@
 using DoTweenHelper.Attribute;
 using DG.Tweening;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace DoTweenHelper
 {
 	[Serializable]
-	public abstract class PathTween<T_Target> : TweenAnimation<T_Target, Vector3[]>
+	public abstract class PathTween<T_Target> : TweenAnimation<T_Target, Vector3[]>, IPathTween
 		where T_Target : Component
 	{
 		/// <summary>
@@ -71,5 +74,9 @@ namespace DoTweenHelper
 		/// 锁定的旋转坐标轴
 		/// </summary>
 		public AxisConstraint lockRotation;
+
+		public ref Vector3[] pathPoints => ref endValue;
+		
+		public bool isHandling { get; set; }
 	}
 }
