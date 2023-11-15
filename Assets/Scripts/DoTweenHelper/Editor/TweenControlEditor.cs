@@ -82,7 +82,11 @@ namespace DoTweenHelper.Editor
 				DOTweenEditorPreview.PrepareTweenForPreview(tweens, andPlay: false);
 			}
 
-			tweens?.OnComplete(() => StopInEditor()).Play();
+			if (com.isAutoRewind)
+			{
+				tweens.onComplete += StopInEditor;
+			}
+			tweens?.Play();
 		}
 
 		void PauseInEditor()

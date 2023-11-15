@@ -16,6 +16,8 @@ namespace DoTweenHelper
 
 		[SerializeField] private bool _isPlayChildren;
 
+		[SerializeField] private bool _isAutoRewind = true;
+
 		public Sequence Get
 		{
 			get => Instance;
@@ -24,6 +26,7 @@ namespace DoTweenHelper
 		public string ID { get => _ID; set => _ID = value; }
 		public bool isAutoPlay { get => _isAutoPlay; set => _isAutoPlay = value; }
 		public bool isPlayChildren { get => _isPlayChildren; set => _isPlayChildren = value; }
+		public bool isAutoRewind { get => _isAutoRewind; set =>_isAutoRewind = value; }
 
 		public void Play()
 		{

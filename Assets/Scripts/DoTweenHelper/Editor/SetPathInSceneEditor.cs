@@ -1,12 +1,14 @@
-﻿using DoTweenHelper.Attribute;
+﻿using System.Collections.Generic;
+using DoTweenHelper.Attribute;
 using DoTweenHelper.Gizmos;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace DoTweenHelper.Editor
 {
 	[InitializeOnLoad]
-	[CustomEditor(typeof(TransformPathTween))]
+	[CustomEditor(typeof(MonoBehaviour), true)]
 	public class SetPathInSceneEditor : 
 #if UNITY_EDITOR
 		UnityEditor.Editor
@@ -14,51 +16,43 @@ namespace DoTweenHelper.Editor
 	{
 		public static IPathTween curPathTween;
 
-#if UNITY_EDITOR
+		private MonoBehaviour com;
 
-		static SetPathInSceneEditor()
-		{
-			curPathTween = null;
-		}
-		
+#if UNITY_EDITOR
 		public override void OnInspectorGUI()
 		{
 			serializedObject.Update();
+			
+			base.OnInspectorGUI();
 
-			var mono = target as MonoBehaviour;
-			var attributes = mono?.GetType().GetCustomAttributes(typeof(SetPathInSceneAttribute), true);
+			com = target as MonoBehaviour;
+			var attributes = com?.GetType().GetCustomAttributes(typeof(SetPathInSceneAttribute), true);
 			if (attributes == null || attributes.Length == 0)
 			{
 				return;
 			}
-		
-			base.OnInspectorGUI();
 			
 			if (curPathTween == null)
 			{
 				if (GUILayout.Button("在Scene绘制路径点"))
 				{
-					if (!mono.TryGetComponent<ShowPathPoints>(out var com))
+					if (!com.TryGetComponent<ShowPathPoints>(out var mono))
 					{
-						com = mono.gameObject.AddComponent<ShowPathPoints>();
+						mono = com.gameObject.AddComponent<ShowPathPoints>();
 					}
 
 					curPathTween = target as IPathTween;
-					if (curPathTween != null)
-					{
-						curPathTween.isHandling = true;
-					}
 				}
 			}
 			else if (Equals(curPathTween, target))
 			{
 				if (GUILayout.Button("完成绘制"))
 				{
-					curPathTween = null;
-					if (mono.TryGetComponent<ShowPathPoints>(out var com))
+					if (com.TryGetComponent<ShowPathPoints>(out var mono))
 					{
-						DestroyImmediate(com);
+						DestroyImmediate(mono);
 					}
+					curPathTween = null;
 				}
 			}
 			else
@@ -72,23 +66,48 @@ namespace DoTweenHelper.Editor
 		void OnSceneGUI()
 		{
 			Event curEvent = Event.current;
-
-			if (curEvent.type == EventType.MouseDown && curEvent.button == 0)
+			if (curEvent == null)
 			{
-				Ray mouseRay = HandleUtility.GUIPointToWorldRay(curEvent.mousePosition);
-				RaycastHit hit;
-				if (curPathTween != null && Physics.Raycast(mouseRay, out hit))
+				return;
+			}
+
+			if (curPathTween != null)
+			{
+				com ??= target as MonoBehaviour;
+				Selection.activeGameObject = (target as MonoBehaviour)?.gameObject;
+			}
+
+			if (curEvent.shift && curEvent.type == EventType.MouseDown && curEvent.button == 0)
+			{
+				var lastCamera = SceneView.lastActiveSceneView.camera;
+
+				var pointInWorld = lastCamera.ScreenToWorldPoint(curEvent.mousePosition);
+				var trans = com?.transform;
+				if (trans == null)
 				{
-					if (!ArrayUtility.Contains(curPathTween.pathPoints, hit.point))
+					return;
+				}
+				var localPoint = trans.transform.InverseTransformPoint(pointInWorld);
+				if (localPoint == null)
+				{
+					Debug.Log("localPoint == null");
+					return;
+				}
+
+				localPoint.z = 0;
+				if (curPathTween != null && curPathTween.pathPoints != null)
+				{
+					if (!ArrayUtility.Contains(curPathTween.pathPoints, localPoint))
 					{
-						ArrayUtility.Add(ref curPathTween.pathPoints, hit.point);
+						ArrayUtility.Add(ref curPathTween.pathPoints, localPoint);
 					}
 					else
 					{
-						ArrayUtility.Remove(ref curPathTween.pathPoints, hit.point);
+						ArrayUtility.Remove(ref curPathTween.pathPoints, localPoint);
 					}
 					
 					EditorUtility.SetDirty(this);
+					curEvent.Use();
 				}
 			}
 		}

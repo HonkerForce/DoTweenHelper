@@ -76,7 +76,5 @@ namespace DoTweenHelper
 		public AxisConstraint lockRotation;
 
 		public ref Vector3[] pathPoints => ref endValue;
-		
-		public bool isHandling { get; set; }
 	}
 }

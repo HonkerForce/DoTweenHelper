@@ -16,6 +16,11 @@
 		/// 是否递归播放所有子节点动效
 		/// </summary>
 		bool isPlayChildren { get; set; }
+		
+		/// <summary>
+		/// 播放完成后是否自动重置(仅对非无限循环序列有效)
+		/// </summary>
+		bool isAutoRewind { get; set; }
 
 		/// <summary>
 		/// 播放当前节点下的所有动效
