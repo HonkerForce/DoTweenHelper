@@ -16,11 +16,8 @@ namespace DoTweenHelper.Editor
 		private TweenControl com;
 		private Sequence tweens;
 
-		private Vector3 fromPosition;
-		private Vector3 fromRotation;
-		private Vector3 fromScale;
-
-		private bool isPause = false;
+		private bool isPause = true;
+		private bool isNeedRewind = false;
 
 		void Awake()
 		{ 
@@ -29,62 +26,86 @@ namespace DoTweenHelper.Editor
 
 		public override void OnInspectorGUI()
 		{
-			// serializedObject.Update();
+			serializedObject.Update();
 
 			base.OnInspectorGUI();
-			
-			if (GUILayout.Button("播放"))
+
+			EditorGUILayout.BeginHorizontal();
+			if (isPause)
 			{
-				PlayInEditor();
+				if (GUILayout.Button("播放", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					PlayInEditor();
+				}
 			}
-			
-			if (GUILayout.Button("暂停"))
+			else
 			{
-				PauseInEditor();
+				if (GUILayout.Button("暂停", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					PauseInEditor();
+				}
 			}
 
-			if (GUILayout.Button("重置"))
+			if (!isNeedRewind)
 			{
-				StopInEditor();
+				if (GUILayout.Button("重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					StopInEditor();
+				}
 			}
+			else
+			{
+				if (GUILayout.Button("(※重新播放先点我)重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					StopInEditor();
+				}
+			}
+			
+			EditorGUILayout.EndHorizontal();
 
-			// serializedObject.ApplyModifiedProperties();
+			serializedObject.ApplyModifiedProperties();
 		}
 
 		void PlayInEditor()
 		{
-			if (!isPause)
+			if (isPause)
 			{
-				fromPosition = com.transform.localPosition;
-				fromRotation = com.transform.localRotation.eulerAngles;
-				fromScale = com.transform.localScale;
-				
-				tweens ??= DOTween.Sequence();
-				ITween[] coms = null;
-				if (com.isPlayChildren)
+				if (tweens == null)
 				{
-					coms = com.GetComponentsInChildren<ITween>();
-				}
-				else
-				{
-					coms = com.GetComponents<ITween>();
-				}
-				foreach (var tween in coms)
-				{
-					if (!tween.canPreview)
+					tweens = DOTween.Sequence();
+					ITween[] coms = null;
+					if (com.isPlayChildren)
 					{
-						continue;
+						coms = com.GetComponentsInChildren<ITween>();
 					}
-					tweens?.Insert(tween.delay, tween.DoTween());
+					else
+					{
+						coms = com.GetComponents<ITween>();
+					}
+					foreach (var tween in coms)
+					{
+						if (!tween.canPreview)
+						{
+							continue;
+						}
+						tweens?.Insert(tween.delay, tween.DoTween());
+					}
+
+					DOTweenEditorPreview.Start();
+					DOTweenEditorPreview.PrepareTweenForPreview(tweens, andPlay: false);
+					
+					// 回调的注册必须放在PrepareTweenForPreview之后，不然注册的回调会失效
+					tweens.OnPlay(() => isPause = false);
+					tweens.OnPause(() => isPause = true);
+					if (com.isAutoRewind)
+					{
+						tweens.onComplete += StopInEditor;
+					}
+					else
+					{
+						tweens.OnComplete(() => isNeedRewind = true);
+					}
 				}
-
-				DOTweenEditorPreview.Start();
-				DOTweenEditorPreview.PrepareTweenForPreview(tweens, andPlay: false);
-			}
-
-			if (com.isAutoRewind)
-			{
-				tweens.onComplete += StopInEditor;
 			}
 			tweens?.Play();
 		}
@@ -93,25 +114,19 @@ namespace DoTweenHelper.Editor
 		{
 			if (tweens != null)
 			{
-				tweens.Pause();
-				isPause = true;
+				tweens?.Pause();
 			}
 		}
 
 		void StopInEditor()
 		{
 			DOTweenEditorPreview.Stop(true);
-			isPause = false;
+			isPause = true;
+			isNeedRewind = false;
 			tweens?.Kill();
 			tweens = null;
 
-			var trans = com.transform;
-			if (trans.localPosition != fromPosition || trans.localRotation.eulerAngles != fromRotation || trans.localScale != fromScale)
-			{
-				trans.localPosition = fromPosition;
-				trans.localRotation = Quaternion.Euler(fromRotation);
-				trans.localScale = fromScale;
-			}
+			Repaint();
 		}
 	}
 }

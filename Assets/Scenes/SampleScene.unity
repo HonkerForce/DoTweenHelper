@@ -594,7 +594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547878365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.00000023841858, y: -0.00000047683716, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -613,12 +613,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06030e907395453d82aacc71c4ee59ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endValue: []
+  endValue:
+  - {x: 0, y: 0, z: 0}
+  - {x: 5, y: 5, z: 0}
+  - {x: 10, y: 0, z: 0}
+  - {x: 7.5, y: -5, z: 0}
+  - {x: 2.5, y: -5, z: 0}
   _ID: 
-  _duration: 5
+  _duration: 2
   _delay: 0
   _isLoop: 0
-  _loopTimes: 0
+  _loopTimes: 3
   _loopType: 0
   _isAutoKill: 0
   _isLinkGameobject: 0
@@ -628,7 +633,7 @@ MonoBehaviour:
   pathType: 0
   pathMode: 1
   resolution: 10
-  isClosePath: 0
+  isClosePath: 1
   isAhead: 1
   lookAtPosition: {x: 0, y: 0, z: 0}
   lookAhead: 0
@@ -649,7 +654,7 @@ MonoBehaviour:
   _ID: 
   _isAutoPlay: 0
   _isPlayChildren: 0
-  _isAutoRewind: 0
+  _isAutoRewind: 1
 --- !u!1 &593011593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,7 +1609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -464.36}
+  m_AnchoredPosition: {x: 471, y: -464.36}
   m_SizeDelta: {x: 444.3455, y: 151.2751}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1825973816

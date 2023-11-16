@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DoTweenHelper
 {
-	[SetPathInScene]
+	[ShowPathInScene]
 	public interface IPathTween : ITween
 	{
 		ref Vector3[] pathPoints { get; }

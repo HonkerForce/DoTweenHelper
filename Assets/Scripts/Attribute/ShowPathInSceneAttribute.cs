@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DoTweenHelper.Attribute
 {
-	public class SetPathInSceneAttribute : System.Attribute
+	public class ShowPathInSceneAttribute : System.Attribute
 	{
 		
 	}

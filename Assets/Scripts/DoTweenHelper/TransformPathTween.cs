@@ -7,7 +7,7 @@ namespace DoTweenHelper
 {
 	[Serializable]
 	[RequireComponent(typeof(Transform))]
-	[SetPathInScene]
+	[ShowPathInScene]
 	public class TransformPathTween : PathTween<Transform>
 	{
 		public override bool canPreview { get; } = true;
