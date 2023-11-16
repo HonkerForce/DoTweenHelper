@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 547878369}
   - component: {fileID: 547878374}
   - component: {fileID: 547878373}
+  - component: {fileID: 547878375}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -622,8 +623,8 @@ MonoBehaviour:
   _ID: 
   _duration: 2
   _delay: 0
-  _isLoop: 0
-  _loopTimes: 3
+  _isLoop: 1
+  _loopTimes: -1
   _loopType: 0
   _isAutoKill: 0
   _isLinkGameobject: 0
@@ -654,7 +655,21 @@ MonoBehaviour:
   _ID: 
   _isAutoPlay: 0
   _isPlayChildren: 0
-  _isAutoRewind: 1
+  _isAutoRewind: 0
+--- !u!114 &547878375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 547878365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4bf5cd42c54eb1bcc94fd1323ba0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  pointColor: {r: 1, g: 0.00000011126201, b: 0, a: 1}
 --- !u!1 &593011593
 GameObject:
   m_ObjectHideFlags: 0
