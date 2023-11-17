@@ -15,7 +15,7 @@ namespace DoTweenHelper
 		public override Tween CreateTween()
 		{
 			var ret = target?.DORotate(endValue, duration, rotateMode).SetRelative(isRelative).SetOptions(isUseShortest360Route);
-			if (isFrom)
+			if (ret != null && isFrom)
 			{
 				ret = ret.From();
 			}

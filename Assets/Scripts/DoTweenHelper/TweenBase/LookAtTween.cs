@@ -18,10 +18,5 @@ namespace DoTweenHelper
 		/// 旋转中心轴方向
 		/// </summary>
 		public Vector3 up;
-
-		/// <summary>
-		/// 是否平滑渐变到整数
-		/// </summary>
-		public bool snapping;
 	}
 }

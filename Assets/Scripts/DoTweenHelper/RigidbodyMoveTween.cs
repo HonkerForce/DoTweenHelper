@@ -5,13 +5,13 @@ using UnityEngine;
 namespace DoTweenHelper
 {
 	[Serializable]
-	[RequireComponent(typeof(Transform))]
-	public class TransformMoveTween : MoveTween<Transform>
+	[RequireComponent(typeof(Rigidbody))]
+	public class RigidbodyMoveTween : MoveTween<Rigidbody>
 	{
 		public override bool canPreview { get; } = true;
 
 		protected bool isFrom = false;
-
+		
 		public override Tween CreateTween()
 		{
 			var ret = target?.DOMove(endValue, duration, snapping).SetRelative(isRelative);
