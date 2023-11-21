@@ -516,7 +516,6 @@ GameObject:
   - component: {fileID: 547878369}
   - component: {fileID: 547878374}
   - component: {fileID: 547878373}
-  - component: {fileID: 547878375}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -615,11 +614,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endValue:
-  - {x: 0, y: 0, z: 0}
   - {x: 5, y: 5, z: 0}
   - {x: 10, y: 0, z: 0}
   - {x: 7.5, y: -5, z: 0}
   - {x: 2.5, y: -5, z: 0}
+  - {x: 0, y: 0, z: 0}
   _ID: 
   _duration: 2
   _delay: 0
@@ -631,7 +630,7 @@ MonoBehaviour:
   _linkActionType: 0
   _LinkGameobject: {fileID: 0}
   _easeType: 1
-  pathType: 0
+  pathType: 1
   pathMode: 1
   resolution: 10
   isClosePath: 1
@@ -640,6 +639,8 @@ MonoBehaviour:
   lookAhead: 0
   lockPosition: 0
   lockRotation: 0
+  isGizmosPath: 1
+  gizmosColor: {r: 0, g: 1, b: 0.049105644, a: 1}
 --- !u!114 &547878374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,23 +654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ID: 
-  _isAutoPlay: 0
+  _isAutoPlay: 1
   _isPlayChildren: 0
-  _isAutoRewind: 0
---- !u!114 &547878375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547878365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4bf5cd42c54eb1bcc94fd1323ba0cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 0
-  pointColor: {r: 1, g: 0.00000011126201, b: 0, a: 1}
+  _isAutoRewind: 1
 --- !u!1 &593011593
 GameObject:
   m_ObjectHideFlags: 0

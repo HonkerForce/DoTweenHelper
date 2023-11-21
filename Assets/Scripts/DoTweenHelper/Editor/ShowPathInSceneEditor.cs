@@ -14,7 +14,7 @@ namespace DoTweenHelper.Editor
 		UnityEditor.Editor
 #endif
 	{
-		public static IPathTween curPathTween;
+		private static IPathTween curPathTween;
 
 		private MonoBehaviour com;
 

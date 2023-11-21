@@ -14,7 +14,7 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			var ret = target?.DOPath(endValue, duration, pathType, pathMode, resolution).SetOptions(isClosePath, lockPosition, lockRotation);
+			var ret = target?.DOPath(endValue, duration, pathType, pathMode, resolution, isGizmosPath ? gizmosColor : null).SetOptions(isClosePath, lockPosition, lockRotation);
 			if (ret == null)
 			{
 				return ret;

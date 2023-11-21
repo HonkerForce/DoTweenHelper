@@ -75,6 +75,16 @@ namespace DoTweenHelper
 		/// </summary>
 		public AxisConstraint lockRotation;
 
+		/// <summary>
+		/// 是否使用Gizmos绘制路径
+		/// </summary>
+		public bool isGizmosPath = false;
+		
+		/// <summary>
+		/// Gizmos绘制路径的颜色
+		/// </summary>
+		public Color gizmosColor;
+
 		public ref Vector3[] pathPoints => ref endValue;
 	}
 }
