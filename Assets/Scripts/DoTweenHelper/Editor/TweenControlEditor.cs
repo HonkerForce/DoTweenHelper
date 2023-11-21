@@ -24,6 +24,7 @@ namespace DoTweenHelper.Editor
 			com = target as TweenControl;
 		}
 
+#if UNITY_EDITOR
 		public override void OnInspectorGUI()
 		{
 			serializedObject.Update();
@@ -128,5 +129,6 @@ namespace DoTweenHelper.Editor
 
 			Repaint();
 		}
+#endif
 	}
 }
