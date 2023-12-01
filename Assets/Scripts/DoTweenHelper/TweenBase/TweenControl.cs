@@ -73,7 +73,7 @@ namespace DoTweenHelper
 
 			foreach (var tweener in tweeners)
 			{
-				this.tweeners?.Insert(tweener.delay, tweener.DoTween());
+				this.tweeners?.Insert(tweener.delay, tweener.DoTween().Pause());
 			}
 
 			this.tweeners?.SetId(ID);
