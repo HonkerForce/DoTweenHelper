@@ -73,10 +73,15 @@ namespace DoTweenHelper
 
 			foreach (var tweener in tweeners)
 			{
-				this.tweeners?.Insert(tweener.delay, tweener.DoTween().Pause());
+				this.tweeners?.Insert(tweener.delay, tweener.DoTween());
 			}
 
-			this.tweeners?.SetId(ID);
+			this.tweeners?.SetId(ID).Pause();
+			
+			if (isAutoPlay)
+			{
+				Play();
+			}
 		}
 
 		void OnEnable()
@@ -89,6 +94,11 @@ namespace DoTweenHelper
 			{
 				Pause();
 			}
+		}
+
+		void OnDisable()
+		{
+			tweeners?.Rewind(true);
 		}
 
 		void OnDestroy()
