@@ -36,5 +36,10 @@
 		/// 停止播放，重置动效
 		/// </summary>
 		void Stop();
+
+		/// <summary>
+		/// 回滚当前节点下的动效
+		/// </summary>
+		void Rollback();
 	}
 }

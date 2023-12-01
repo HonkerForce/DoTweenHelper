@@ -14,7 +14,13 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			return target.DOPixelRect(endValue, duration).SetOptions(snapping);
+			var ret = target.DOPixelRect(endValue, duration).SetOptions(snapping);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

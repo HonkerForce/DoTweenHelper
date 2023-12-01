@@ -28,6 +28,8 @@ namespace DoTweenHelper
 
 		[SerializeField] protected TweenLoopType _loopType = TweenLoopType.Replay;
 
+		[SerializeField] protected bool _from;
+
 		[SerializeField] protected bool _isAutoKill = false;
 
 		[SerializeField] protected bool _isLinkGameobject = false;
@@ -55,6 +57,7 @@ namespace DoTweenHelper
 		public bool isLoop { get => _isLoop; set => _isLoop = value; }
 		public int loopTimes { get => _loopTimes; set => _loopTimes = value; }
 		public TweenLoopType loopType { get => _loopType; set => _loopType = value; }
+		public bool from { get => _from; set => _from = value; }
 		public bool isAutoKill { get => _isAutoKill; set => _isAutoKill = value; }
 		public bool isLinkGameobject { get => _isLinkGameobject; set => _isLinkGameobject = value; }
 		public LinkBehaviour linkActionType { get => _linkActionType; set => _linkActionType = value; }
@@ -67,9 +70,13 @@ namespace DoTweenHelper
 		}
 		
 		public abstract Tween CreateTween();
-		public Tween DoTween()
+		public Tween DoTween(bool isRollback = false)
 		{
 			// target ??= GetComponent<T_Target>();
+			if (isRollback)
+			{
+				from = !from;
+			}
 
 			return CreateTween()
 				.SetId(ID)

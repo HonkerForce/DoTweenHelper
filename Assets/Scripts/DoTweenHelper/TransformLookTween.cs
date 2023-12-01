@@ -11,7 +11,13 @@ namespace DoTweenHelper
 		public override bool canPreview { get; } = true;
 		public override Tween CreateTween()
 		{
-			return target?.DODynamicLookAt(endValue, duration, lockAxis, up);
+			var ret = target?.DODynamicLookAt(endValue, duration, lockAxis, up);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

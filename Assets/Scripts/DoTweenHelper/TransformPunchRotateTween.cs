@@ -12,7 +12,13 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			return target.DOPunchRotation(endValue, duration, punchNum, inertia);
+			var ret = target.DOPunchRotation(endValue, duration, punchNum, inertia);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

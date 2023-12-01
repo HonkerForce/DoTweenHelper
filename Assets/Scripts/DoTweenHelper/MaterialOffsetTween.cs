@@ -43,15 +43,23 @@ namespace DoTweenHelper
 				Debug.LogError("获取Render中的Material引用失败！");
 				return null;
 			}
-			
+
+			Tweener ret = null;
 			if (String.IsNullOrEmpty(propertyName))
 			{
-				return material.DOOffset(endValue, duration).SetOptions(snapping);
+				ret = material.DOOffset(endValue, duration).SetOptions(snapping);
 			}
 			else
 			{
-				return material.DOOffset(endValue, propertyName, duration).SetOptions(snapping);
+				ret = material.DOOffset(endValue, propertyName, duration).SetOptions(snapping);
 			}
+
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

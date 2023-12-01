@@ -15,7 +15,13 @@ namespace DoTweenHelper
 		
 		public override Tween CreateTween()
 		{
-			return target.DOFillAmount(endValue, duration).SetOptions(snapping);
+			var ret = target.DOFillAmount(endValue, duration).SetOptions(snapping);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

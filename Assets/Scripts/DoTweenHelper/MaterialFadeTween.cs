@@ -45,15 +45,24 @@ namespace DoTweenHelper
 				Debug.LogError("获取Render中的Material引用失败！");
 				return null;
 			}
-			
+
+
+			Tweener ret = null;
 			if (String.IsNullOrEmpty(propertyName))
 			{
-				return material.DOFade(endValue, duration).SetOptions(isOnlyAlpha);
+				ret = material.DOFade(endValue, duration).SetOptions(isOnlyAlpha);
 			}
 			else
 			{
-				return material.DOFade(endValue, propertyName, duration).SetOptions(isOnlyAlpha);
+				ret = material.DOFade(endValue, propertyName, duration).SetOptions(isOnlyAlpha);
 			}
+
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

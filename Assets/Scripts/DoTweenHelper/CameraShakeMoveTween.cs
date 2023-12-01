@@ -12,7 +12,13 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			return target.DOShakePosition(duration, endValue, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);
+			var ret = target.DOShakePosition(duration, endValue, shakeNum, shakeRandom, isFadeOut, (ShakeRandomnessMode)randMode);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

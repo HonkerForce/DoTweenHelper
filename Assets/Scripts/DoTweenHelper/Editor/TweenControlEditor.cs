@@ -85,7 +85,7 @@ namespace DoTweenHelper.Editor
 					}
 					foreach (var tween in coms)
 					{
-						if (!tween.canPreview)
+						if (tween.from || !tween.canPreview)
 						{
 							continue;
 						}

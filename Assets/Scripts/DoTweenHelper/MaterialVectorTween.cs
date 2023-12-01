@@ -49,7 +49,13 @@ namespace DoTweenHelper
 				return null;
 			}
 
-			return material.DOVector(endValue, propertyName, duration).SetOptions(snapping);
+			var ret = material.DOVector(endValue, propertyName, duration).SetOptions(snapping);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

@@ -14,7 +14,13 @@ namespace DoTweenHelper
 		
 		public override Tween CreateTween()
 		{
-			return target.DOOrthoSize(endValue, duration).SetOptions(snapping);
+			var ret = target.DOOrthoSize(endValue, duration).SetOptions(snapping);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

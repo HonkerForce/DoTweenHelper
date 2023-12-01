@@ -28,6 +28,11 @@ namespace DoTweenHelper
 				ret.SetLookAt(lookAtPosition, forwardDic, up);
 			}
 
+			if (from)
+			{
+				ret = ret.From();
+			}
+
 			return ret;
 		}
 	}

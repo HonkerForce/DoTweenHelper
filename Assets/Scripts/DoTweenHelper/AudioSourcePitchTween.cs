@@ -14,7 +14,12 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			return target.DOPitch(endValue, duration).SetOptions(snapping);
+			var ret = target.DOPitch(endValue, duration).SetOptions(snapping);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+			return ret;
 		}
 	}
 }

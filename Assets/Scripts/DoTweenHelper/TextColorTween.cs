@@ -13,7 +13,13 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			return target.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
+			var ret = target.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

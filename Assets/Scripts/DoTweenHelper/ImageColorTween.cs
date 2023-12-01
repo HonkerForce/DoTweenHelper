@@ -12,6 +12,8 @@ namespace DoTweenHelper
 	{
 		public override bool canPreview { get; } = true;
 
+		public bool isGriadient;
+
 		/// <summary>
 		/// 颜色混合器
 		/// </summary>
@@ -19,9 +21,15 @@ namespace DoTweenHelper
 		
 		public override Tween CreateTween()
 		{
-			if (gradient == null)
+			if (!isGriadient)
 			{
-				return target?.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
+				var ret = target?.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
+				if (from)
+				{
+					ret = ret?.From();
+				}
+
+				return ret;
 			}
 			else
 			{

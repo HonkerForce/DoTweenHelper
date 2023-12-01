@@ -46,6 +46,11 @@ namespace DoTweenHelper
 		TweenLoopType loopType { get; set; }
 		
 		/// <summary>
+		/// from动画
+		/// </summary>
+		bool from { get; set; }
+		
+		/// <summary>
 		/// 是否在完成后杀死(杀死后被回收或者被销毁要看Recycle设置)
 		/// Recycle设置可以在全局配置默认设置，也可以针对每个tween分别SetRecyclable
 		/// </summary>
@@ -78,6 +83,6 @@ namespace DoTweenHelper
 		/// <summary>
 		/// 附加设置，并运行动效
 		/// </summary>
-		Tween DoTween();
+		Tween DoTween(bool isRollback = false);
 	}
 }

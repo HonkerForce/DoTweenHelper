@@ -12,7 +12,13 @@ namespace DoTweenHelper
 		public override bool canPreview { get; }
 		public override Tween CreateTween()
 		{
-			return target?.DOFade(endValue, duration).SetOptions(isOnlyAlpha);
+			var ret = target?.DOFade(endValue, duration).SetOptions(isOnlyAlpha);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

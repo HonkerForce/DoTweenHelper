@@ -10,14 +10,12 @@ namespace DoTweenHelper
 	{
 		public override bool canPreview { get; } = true;
 
-		protected bool isFrom = false;
-
 		public override Tween CreateTween()
 		{
 			var ret = target?.DOMove(endValue, duration, snapping).SetRelative(isRelative);
-			if (ret != null && isFrom)
+			if (from)
 			{
-				ret = ret.From();
+				ret = ret?.From();
 			}
 
 			return ret;

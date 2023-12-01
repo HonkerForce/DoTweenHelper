@@ -18,14 +18,14 @@ namespace DoTweenHelper
 		/// <summary>
 		/// 是否从传入值渐变到当前值
 		/// </summary>
-		protected bool isFrom;
+		// protected bool isFrom;
 		
 		public override Tween CreateTween()
 		{
 			var ret = target.DOScale(endValue, duration).SetOptions(snapping);
-			if (isFrom)
+			if (from)
 			{
-				ret = ret.From();
+				ret = ret?.From();
 			}
 
 			return ret;

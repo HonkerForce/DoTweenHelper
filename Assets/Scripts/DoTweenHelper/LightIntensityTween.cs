@@ -13,7 +13,13 @@ namespace DoTweenHelper
 		public bool snapping;
 		public override Tween CreateTween()
 		{
-			return target?.DOIntensity(endValue, duration).SetOptions(snapping);
+			var ret = target?.DOIntensity(endValue, duration).SetOptions(snapping);
+			if (from)
+			{
+				ret = ret?.From();
+			}
+
+			return ret;
 		}
 	}
 }

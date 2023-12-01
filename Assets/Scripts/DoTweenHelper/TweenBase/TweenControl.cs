@@ -8,7 +8,8 @@ namespace DoTweenHelper
 	[Serializable]
 	public sealed class TweenControl : MonoBehaviour, ITweenControl
 	{
-		private Sequence Instance = null;
+		private Sequence tweeners = null;
+		private Sequence fromTweeners = null;
 
 		[SerializeField] private string _ID;
 
@@ -20,7 +21,7 @@ namespace DoTweenHelper
 
 		public Sequence Get
 		{
-			get => Instance;
+			get => tweeners;
 		}
 		
 		public string ID { get => _ID; set => _ID = value; }
@@ -30,30 +31,52 @@ namespace DoTweenHelper
 
 		public void Play()
 		{
-			Instance?.Restart(true);
+			tweeners?.Restart(true);
 		}
 
 		public void Pause()
 		{
-			Instance?.Pause();
+			tweeners?.Pause();
 		}
 
 		public void Stop()
 		{
-			Instance?.Rewind(true);
+			tweeners?.Rewind(true);
+		}
+
+		public void Rollback()
+		{
+			if (fromTweeners == null)
+			{
+				this.fromTweeners = DOTween.Sequence();
+				var tweeners = GetComponents<ITween>();
+				// bool first = false;
+				foreach (var tweener in tweeners)
+				{
+					// var delay = tweener.delay;
+					// if (!first)
+					// {
+					// 	first = true;
+					// 	delay = 0;
+					// }
+					this.fromTweeners?.Insert(0, tweener.DoTween(true));
+				}
+			}
+
+			fromTweeners.Restart(false);
 		}
 
 		void Start()
 		{
-			Instance ??= DOTween.Sequence();
+			this.tweeners ??= DOTween.Sequence();
 			var tweeners = GetComponents<ITween>();
 
 			foreach (var tweener in tweeners)
 			{
-				Instance?.Insert(tweener.delay, tweener.DoTween());
+				this.tweeners?.Insert(tweener.delay, tweener.DoTween());
 			}
 
-			Instance?.SetId(ID);
+			this.tweeners?.SetId(ID);
 		}
 
 		void OnEnable()
@@ -70,7 +93,7 @@ namespace DoTweenHelper
 
 		void OnDestroy()
 		{
-			Instance?.Kill();
+			tweeners?.Kill();
 		}
 	}
 }

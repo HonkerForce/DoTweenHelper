@@ -66,14 +66,22 @@ namespace DoTweenHelper
 			}
 			else
 			{
+				Tweener ret = null;
 				if (String.IsNullOrEmpty(propertyName))
 				{
-					return material.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
+					ret = material.DOColor(endValue, duration).SetOptions(isOnlyAlpha);
 				}
 				else
 				{
-					return material.DOColor(endValue, propertyName, duration).SetOptions(isOnlyAlpha);
+					ret = material.DOColor(endValue, propertyName, duration).SetOptions(isOnlyAlpha);
 				}
+
+				if (from)
+				{
+					ret = ret?.From();
+				}
+
+				return ret;
 			}
 		}
 	}
