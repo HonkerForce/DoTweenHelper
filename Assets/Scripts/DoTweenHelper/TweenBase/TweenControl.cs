@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -39,41 +40,41 @@ namespace DoTweenHelper
 			tweeners?.Pause();
 		}
 
-		public void Stop()
+		public Task Stop(bool isRollback)
 		{
-			tweeners?.Rewind(true);
+			Task task = null;
+			if (isRollback)
+			{
+				task = Rollback();
+			}
+
+			return task;
 		}
 
-		public void Rollback()
+		public Task Rollback()
 		{
 			if (fromTweeners == null)
 			{
-				this.fromTweeners = DOTween.Sequence();
+				this.fromTweeners = DOTween.Sequence().SetAutoKill(false);
 				var tweeners = GetComponents<ITween>();
-				// bool first = false;
 				foreach (var tweener in tweeners)
 				{
-					// var delay = tweener.delay;
-					// if (!first)
-					// {
-					// 	first = true;
-					// 	delay = 0;
-					// }
 					this.fromTweeners?.Insert(0, tweener.DoTween(true));
 				}
 			}
 
-			fromTweeners.Restart(false);
+			fromTweeners.Restart(true);
+			return fromTweeners.AsyncWaitForCompletion();
 		}
 
 		void Start()
 		{
-			this.tweeners ??= DOTween.Sequence();
+			this.tweeners ??= DOTween.Sequence().SetAutoKill(false).SetId(ID);
 			var tweeners = GetComponents<ITween>();
 
 			foreach (var tweener in tweeners)
 			{
-				this.tweeners?.Insert(tweener.delay, tweener.DoTween());
+				this.tweeners?.Insert(0, tweener.DoTween());
 			}
 
 			this.tweeners?.SetId(ID).Pause();
@@ -96,14 +97,12 @@ namespace DoTweenHelper
 			}
 		}
 
-		void OnDisable()
-		{
-			tweeners?.Rewind(true);
-		}
-
 		void OnDestroy()
 		{
 			tweeners?.Kill();
+			fromTweeners?.Kill();
+			tweeners = null;
+			fromTweeners = null;
 		}
 	}
 }

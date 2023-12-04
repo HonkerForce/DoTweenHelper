@@ -1,4 +1,6 @@
-﻿namespace DoTweenHelper
+﻿using System.Threading.Tasks;
+
+namespace DoTweenHelper
 {
 	public interface ITweenControl
 	{
@@ -35,11 +37,12 @@
 		/// <summary>
 		/// 停止播放，重置动效
 		/// </summary>
-		void Stop();
+		/// <param name="isRollback">是否回滚之前播放的动效</param>
+		Task Stop(bool isRollback);
 
 		/// <summary>
 		/// 回滚当前节点下的动效
 		/// </summary>
-		void Rollback();
+		Task Rollback();
 	}
 }

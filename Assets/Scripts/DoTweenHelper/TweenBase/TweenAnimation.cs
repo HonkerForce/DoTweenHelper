@@ -80,7 +80,7 @@ namespace DoTweenHelper
 
 			return CreateTween()
 				.SetId(ID)
-				.SetDelay(delay)
+				.SetDelay(delay, true)
 				.SetLoops(isLoop ? loopTimes : 1, (LoopType)loopType)
 				.SetAutoKill(isAutoKill)
 				.SetEase(easeType)
