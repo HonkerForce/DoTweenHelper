@@ -85,6 +85,6 @@ namespace DoTweenHelper
 		/// </summary>
 		public Color gizmosColor;
 
-		public ref Vector3[] pathPoints => ref endValue;
+		public ref Vector3[] pathPoints => ref _endValue;
 	}
 }

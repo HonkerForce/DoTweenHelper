@@ -14,7 +14,12 @@ namespace DoTweenHelper
 		
 		protected T_Target target = null;
 
-		[SerializeField] protected T_Value endValue;
+		[SerializeField] protected T_Value _endValue;
+		public T_Value endValue
+		{
+			get => _endValue;
+			set => _endValue = value;
+		}
 
 		[SerializeField] protected string _ID;
 
@@ -39,6 +44,8 @@ namespace DoTweenHelper
 		[SerializeField] protected GameObject _LinkGameobject = null;
 
 		[SerializeField] protected Ease _easeType = Ease.Linear;
+
+		[SerializeField] protected bool _isControlled = true;
 		
 		/// <summary>
 		/// 是否支持在编辑模式下预览效果
@@ -63,6 +70,7 @@ namespace DoTweenHelper
 		public LinkBehaviour linkActionType { get => _linkActionType; set => _linkActionType = value; }
 		public GameObject linkGameobject { get => _LinkGameobject; set => _LinkGameobject = value; }
 		public Ease easeType { get => _easeType; set => _easeType = value; }
+		public bool isControlled { get => _isControlled; set => _isControlled = value; }
 
 		protected virtual void Awake()
 		{

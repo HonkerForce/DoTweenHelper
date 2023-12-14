@@ -12,7 +12,7 @@ namespace DoTweenHelper
 
 		public override Tween CreateTween()
 		{
-			endValue.z = 0;
+			_endValue.z = 0;
 			return target.DOJumpAnchorPos(endValue, jumpMaxHeight, jumpNum, duration, snapping);
 		}
 	}

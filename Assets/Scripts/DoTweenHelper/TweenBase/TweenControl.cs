@@ -59,6 +59,11 @@ namespace DoTweenHelper
 				var tweeners = GetComponents<ITween>();
 				foreach (var tweener in tweeners)
 				{
+					if (!tweener.isControlled)
+					{
+						continue;
+					}
+					
 					this.fromTweeners?.Insert(0, tweener.DoTween(true));
 				}
 			}
@@ -74,6 +79,11 @@ namespace DoTweenHelper
 
 			foreach (var tweener in tweeners)
 			{
+				if (!tweener.isControlled)
+				{
+					continue;
+				}
+				
 				this.tweeners?.Insert(0, tweener.DoTween());
 			}
 

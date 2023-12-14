@@ -1,22 +1,19 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
 namespace DoTweenHelper
 {
-	[Serializable]
+	[SerializeField]
 	[RequireComponent(typeof(RectTransform))]
-	public class RectTransformSizeDeltaTween : TweenAnimation<RectTransform, Vector2>
+	public class RectTransformPivotTween : TweenAnimation<RectTransform, Vector2>
 	{
 		public override bool canPreview { get; } = true;
-
-		public AxisConstraint lockAxis;
 
 		public bool snapping;
 		
 		public override Tween CreateTween()
 		{
-			var ret = target.DOSizeDelta(endValue, duration, snapping).SetOptions(lockAxis);
+			var ret = target.DOPivot(endValue, duration).SetOptions(snapping); 
 			if (from)
 			{
 				ret = ret.From();

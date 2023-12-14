@@ -13,7 +13,7 @@ namespace DoTweenHelper.Editor
 		: UnityEditor.Editor
 #endif
 	{
-		private TweenControl com;
+		private TweenControl control;
 		private Sequence tweens;
 
 		private bool isPause = true;
@@ -21,7 +21,7 @@ namespace DoTweenHelper.Editor
 
 		void Awake()
 		{ 
-			com = target as TweenControl;
+			control = target as TweenControl;
 		}
 
 #if UNITY_EDITOR
@@ -32,7 +32,15 @@ namespace DoTweenHelper.Editor
 			base.OnInspectorGUI();
 
 			EditorGUILayout.BeginHorizontal();
-			if (isPause)
+
+			if (isNeedRewind)
+			{
+				if (GUILayout.Button("(※重新播放先点我)重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					StopInEditor();
+				}
+			}
+			else if (isPause)
 			{
 				if (GUILayout.Button("播放", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
 				{
@@ -47,21 +55,6 @@ namespace DoTweenHelper.Editor
 				}
 			}
 
-			if (!isNeedRewind)
-			{
-				if (GUILayout.Button("重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
-				{
-					StopInEditor();
-				}
-			}
-			else
-			{
-				if (GUILayout.Button("(※重新播放先点我)重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
-				{
-					StopInEditor();
-				}
-			}
-			
 			EditorGUILayout.EndHorizontal();
 
 			serializedObject.ApplyModifiedProperties();
@@ -73,23 +66,25 @@ namespace DoTweenHelper.Editor
 			{
 				if (tweens == null)
 				{
+					int count = 0;
 					tweens = DOTween.Sequence();
 					ITween[] coms = null;
-					if (com.isPlayChildren)
+					if (control.isPlayChildren)
 					{
-						coms = com.GetComponentsInChildren<ITween>();
+						coms = control.GetComponentsInChildren<ITween>();
 					}
 					else
 					{
-						coms = com.GetComponents<ITween>();
+						coms = control.GetComponents<ITween>();
 					}
 					foreach (var tween in coms)
 					{
-						if (tween.from || !tween.canPreview)
+						if (tween.from || !tween.canPreview || !tween.isControlled)
 						{
 							continue;
 						}
-						tweens?.Insert(tween.delay, tween.DoTween());
+						tweens?.Insert(0, tween.DoTween());
+						count++;
 					}
 
 					DOTweenEditorPreview.Start();
@@ -98,11 +93,11 @@ namespace DoTweenHelper.Editor
 					// 回调的注册必须放在PrepareTweenForPreview之后，不然注册的回调会失效
 					tweens.OnPlay(() => isPause = false);
 					tweens.OnPause(() => isPause = true);
-					if (com.isAutoRewind)
+					if (control.isAutoRewind)
 					{
 						tweens.onComplete += StopInEditor;
 					}
-					else
+					else if (count > 0)
 					{
 						tweens.OnComplete(() => isNeedRewind = true);
 					}

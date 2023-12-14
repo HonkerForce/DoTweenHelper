@@ -71,9 +71,20 @@ namespace DoTweenHelper
 		/// </summary>
 		GameObject linkGameobject { get; set; }
 		
+		/// <summary>
+		/// 缓动曲线
+		/// </summary>
 		Ease easeType { get; set; }
 		
+		/// <summary>
+		/// 是否支持预览
+		/// </summary>
 		bool canPreview { get; }
+		
+		/// <summary>
+		/// 是否需要被TweenControl管理
+		/// </summary>
+		bool isControlled { get; set; }
 
 		/// <summary>
 		/// 创建Tween
