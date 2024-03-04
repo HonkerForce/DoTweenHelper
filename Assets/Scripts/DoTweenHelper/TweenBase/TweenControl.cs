@@ -47,6 +47,10 @@ namespace DoTweenHelper
 			{
 				task = Rollback();
 			}
+			else
+			{
+				tweeners.Rewind(true);
+			}
 
 			return task;
 		}
