@@ -504,6 +504,7 @@ MonoBehaviour:
   _isAutoPlay: 0
   _isPlayChildren: 0
   _isAutoRewind: 0
+  _isPreviewFrom: 0
 --- !u!1 &547878365
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +616,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06030e907395453d82aacc71c4ee59ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _endValue: []
+  _endValue:
+  - {x: 2, y: 5, z: 0}
+  - {x: 4, y: 3, z: 0}
+  - {x: 3, y: 0, z: 0}
+  - {x: 0, y: -3, z: 0}
   _ID: 
   _duration: 2
   _delay: 0
@@ -656,6 +661,7 @@ MonoBehaviour:
   _isAutoPlay: 1
   _isPlayChildren: 0
   _isAutoRewind: 1
+  _isPreviewFrom: 0
 --- !u!1 &593011593
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +778,7 @@ MonoBehaviour:
   _isAutoPlay: 1
   _isPlayChildren: 0
   _isAutoRewind: 0
+  _isPreviewFrom: 0
 --- !u!65 &608857508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1076,6 +1083,7 @@ MonoBehaviour:
   _isAutoPlay: 1
   _isPlayChildren: 0
   _isAutoRewind: 0
+  _isPreviewFrom: 0
 --- !u!1 &1119212191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1200,7 @@ MonoBehaviour:
   _isAutoPlay: 1
   _isPlayChildren: 0
   _isAutoRewind: 0
+  _isPreviewFrom: 0
 --- !u!114 &1119212198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1446,7 @@ MonoBehaviour:
   _isAutoPlay: 0
   _isPlayChildren: 0
   _isAutoRewind: 0
+  _isPreviewFrom: 0
 --- !u!114 &1660903121
 MonoBehaviour:
   m_ObjectHideFlags: 0

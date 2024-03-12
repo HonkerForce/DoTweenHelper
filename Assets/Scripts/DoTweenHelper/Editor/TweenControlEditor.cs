@@ -33,14 +33,7 @@ namespace DoTweenHelper.Editor
 
 			EditorGUILayout.BeginHorizontal();
 
-			if (isNeedRewind)
-			{
-				if (GUILayout.Button("(※重新播放先点我)重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
-				{
-					StopInEditor();
-				}
-			}
-			else if (isPause)
+			if (isPause)
 			{
 				if (GUILayout.Button("播放", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
 				{
@@ -54,6 +47,22 @@ namespace DoTweenHelper.Editor
 					PauseInEditor();
 				}
 			}
+			
+			if (isNeedRewind)
+			{
+				if (GUILayout.Button("(※重新播放先点我)重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					StopInEditor();
+				}
+			}
+			else
+			{
+				if (GUILayout.Button("重置", GUILayout.ExpandWidth(true), GUILayout.Height(40)))
+				{
+					StopInEditor();
+				}
+			}
+
 
 			EditorGUILayout.EndHorizontal();
 
