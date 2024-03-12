@@ -79,27 +79,40 @@ namespace DoTweenHelper.Editor
 					}
 					foreach (var tween in coms)
 					{
-						if (tween.from || !tween.canPreview || !tween.isControlled)
+						if (!tween.canPreview || !tween.isControlled)
 						{
 							continue;
 						}
-						tweens?.Insert(0, tween.DoTween());
-						count++;
-					}
 
+						if (tween.from && control.isPreviewFrom)
+						{
+							tweens?.Insert(0, tween.DoTween());
+							count++;
+						}
+						if (!tween.from && !control.isPreviewFrom)
+						{
+							tweens?.Insert(0, tween.DoTween());
+							count++;
+						}
+					}
+					
 					DOTweenEditorPreview.Start();
 					DOTweenEditorPreview.PrepareTweenForPreview(tweens, andPlay: false);
-					
+
 					// 回调的注册必须放在PrepareTweenForPreview之后，不然注册的回调会失效
 					tweens.OnPlay(() => isPause = false);
 					tweens.OnPause(() => isPause = true);
 					if (control.isAutoRewind)
 					{
-						tweens.onComplete += StopInEditor;
+						tweens?.OnComplete(StopInEditor);
 					}
 					else if (count > 0)
 					{
-						tweens.OnComplete(() => isNeedRewind = true);
+						tweens?.OnComplete(() => isNeedRewind = true);
+					}
+					else
+					{
+						StopInEditor();
 					}
 				}
 			}
@@ -116,7 +129,8 @@ namespace DoTweenHelper.Editor
 
 		void StopInEditor()
 		{
-			DOTweenEditorPreview.Stop(true);
+			DOTweenEditorPreview.Stop(!control.isPreviewFrom);
+
 			isPause = true;
 			isNeedRewind = false;
 			tweens?.Kill();

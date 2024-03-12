@@ -23,6 +23,11 @@ namespace DoTweenHelper
 		/// 播放完成后是否自动重置(仅对非无限循环序列有效)
 		/// </summary>
 		bool isAutoRewind { get; set; }
+		
+		/// <summary>
+		/// 是否预览from的效果
+		/// </summary>
+		bool isPreviewFrom { get; set; }
 
 		/// <summary>
 		/// 播放当前节点下的所有动效

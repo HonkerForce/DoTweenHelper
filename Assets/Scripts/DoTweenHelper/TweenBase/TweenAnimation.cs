@@ -86,7 +86,7 @@ namespace DoTweenHelper
 				from = !from;
 			}
 
-			return CreateTween()
+			return Instance = CreateTween()
 				.SetId(ID)
 				.SetDelay(delay, true)
 				.SetLoops(isLoop ? loopTimes : 1, (LoopType)loopType)

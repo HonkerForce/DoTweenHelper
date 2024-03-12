@@ -20,6 +20,8 @@ namespace DoTweenHelper
 
 		[SerializeField] private bool _isAutoRewind = true;
 
+		[SerializeField] private bool _isPreviewFrom = false;
+
 		public Sequence Get
 		{
 			get => tweeners;
@@ -29,6 +31,12 @@ namespace DoTweenHelper
 		public bool isAutoPlay { get => _isAutoPlay; set => _isAutoPlay = value; }
 		public bool isPlayChildren { get => _isPlayChildren; set => _isPlayChildren = value; }
 		public bool isAutoRewind { get => _isAutoRewind; set =>_isAutoRewind = value; }
+
+		public bool isPreviewFrom
+		{
+			get => _isPreviewFrom;
+			set => _isPreviewFrom = value;
+		}
 
 		public void Play()
 		{
