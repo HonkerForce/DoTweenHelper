@@ -93,6 +93,14 @@ namespace DoTweenHelper.Editor
 							continue;
 						}
 
+						if (!string.IsNullOrEmpty(control.previewID))
+						{
+							if (string.IsNullOrEmpty(tween.ID) || !control.previewID.Contains(tween.ID))
+							{
+								continue;
+							}
+						}
+
 						if (tween.from && control.isPreviewFrom)
 						{
 							tweens?.Insert(0, tween.DoTween());

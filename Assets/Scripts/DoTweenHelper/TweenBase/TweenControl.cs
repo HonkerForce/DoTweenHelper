@@ -21,6 +21,8 @@ namespace DoTweenHelper
 		[SerializeField] private bool _isAutoRewind = true;
 
 		[SerializeField] private bool _isPreviewFrom = false;
+		
+		public string previewID;		// 需要预览当前节点上的哪个Tween的ID
 
 		public Sequence Get
 		{
